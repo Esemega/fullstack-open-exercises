@@ -9,20 +9,22 @@ const App = () => {
 
       
   const Header = ({text}) => <h1>{text}</h1>
+  const Button = ({handleClick, text}) => <button onClick={handleClick}>{text}</button>
+
+  const Statistic = ({text, value}) => {
+    return(
+      <div>
+      {`${text} ${value}`}
+      </div>
+    )
+  }
 
   const increaseGood = () => setGood(good + 1);
   const increaseNeutral = () => setNeutral(neutral + 1);
   const increaseBad = () => setBad(bad + 1);
-
-  const Button = ({handleClick, text}) => <button onClick={handleClick}>{text}</button>
-
-  const Counter = ({name, value}) => {
-    return(
-      <div>
-      {`${name} ${value}`}
-      </div>
-    )
-  }
+  const total = () => good + neutral + bad;
+  const average = () => (good*1 + neutral*0 + bad*-1)/total();
+  const positive = () => `${(good/total())*100} %`;
 
   return (
     <div>
@@ -31,9 +33,12 @@ const App = () => {
       <Button handleClick={increaseNeutral} text = {'neutral'}/>
       <Button handleClick={increaseBad} text = {'bad'}/>
       <Header text = {'statistics'}/>
-      <Counter name={'good'} value={good}/>
-      <Counter name={'neutral'} value={neutral}/>
-      <Counter name={'bad'} value={bad}/>
+      <Statistic text={'good'} value={good}/>
+      <Statistic text={'neutral'} value={neutral}/>
+      <Statistic text={'bad'} value={bad}/>
+      <Statistic text={'all'} value={total()}/>
+      <Statistic text={'average'} value={average()}/>
+      <Statistic text={'positive'} value={positive()}/>
     </div>
   )
 }
