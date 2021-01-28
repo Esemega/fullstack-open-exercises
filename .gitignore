@@ -4,6 +4,9 @@
 #course-info
 /part1/course-info/node_modules
 /part1/course-info/.eslintcache
+#unicafe
+/part1/unicafe/node_modules
+/part1/unicafe/.eslintcache
 
 # dependencies
 /node_modules
